@@ -1,10 +1,9 @@
 import React, {useState, useEffect, useRef} from "react";
 import "./App.css";
-import ApiCall from "./apiCall";
+import ErrorBoundary from "./ErrorBoundary";
 
 let autoComplete;
 
-let finalCityObj;
 
 const loadScript = (url, callback) => {
     let script = document.createElement("script");
@@ -44,6 +43,13 @@ async function handlePlaceSelect(updateQuery, props) {
     props.getNewCity(addressObject)
 
 }
+function onKeyPress(event) {
+    if (event.which === 13 /* Enter */) {
+        console.log("Enter key was pressed here!!!!!!!!!!!!!!!!!!!")
+        event.preventDefault();
+    }
+}
+
 
 function SearchLocationInput(props) {
     const [query, setQuery] = useState("");
@@ -65,13 +71,11 @@ function SearchLocationInput(props) {
                     onClick={event => console.log("The clicked event is: ", event.target.value)}
                     placeholder="Enter a City"
                     value={query}
+                    onKeyPress={onKeyPress}
                 />
             </div>
             <div>
                 <small>We'll soon include GeoLocation features.</small><br/>
-                <button type="submit" className="btn btn-primary col-md-5">
-                    Submit
-                </button>
             </div>
         </div>
     );
