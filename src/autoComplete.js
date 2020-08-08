@@ -37,17 +37,21 @@ function handleScriptLoad(updateQuery, autoCompleteRef, props) {
 
 async function handlePlaceSelect(updateQuery, props) {
     const addressObject = autoComplete.getPlace();
-    const query = addressObject.address_components[0].long_name;
+    const query = addressObject.formatted_address
     updateQuery(query);
     console.log("obj", addressObject);
-    props.getNewCity(addressObject)
+    if(addressObject.formatted_address)
+        props.getNewCity(addressObject)
 
 }
 function onKeyPress(event) {
     if (event.which === 13 /* Enter */) {
-        console.log("Enter key was pressed here!!!!!!!!!!!!!!!!!!!")
-        event.preventDefault();
+        console.log("Enter key was pressed here")
+        event.preventDefault()
+        event.stopPropagation();
+
     }
+
 }
 
 
@@ -64,16 +68,20 @@ function SearchLocationInput(props) {
 
     return (
         <div>
-            <div className="search-location-input" style={{margin: "auto"}}>
-                <input
+
+                <form onSubmit={onKeyPress}>
+                    <div className="search-location-input" style={{margin: "auto"}}>
+                    <input
                     ref={autoCompleteRef}
                     onChange={event => setQuery(event.target.value)}
                     onClick={event => console.log("The clicked event is: ", event.target.value)}
                     placeholder="Enter a City"
                     value={query}
-                    onKeyPress={onKeyPress}
-                />
-            </div>
+                    onKeyDown={onKeyPress}
+                    />
+                    </div>
+                </form>
+
             <div>
                 <small>We'll soon include GeoLocation features.</small><br/>
             </div>

@@ -17,10 +17,11 @@ class WeatherComp extends React.Component {
             iconUrl: "",
             dataObj: "",
             geoLocation: true,
-            isLoading: true
+            isLoading: true,
+            loadingFail: false
         }
         this.handleRejection = this.handleRejection.bind(this)
-      this.onKeyPress = this.onKeyPress.bind(this)
+      this.updateApiStatus = this.updateApiStatus.bind(this)
     }
 
     componentDidMount() {
@@ -69,6 +70,14 @@ class WeatherComp extends React.Component {
         this.getCity(fields.address_components[0].long_name)
     }
 
+    updateApiStatus = fields => {
+      this.setState(
+        {
+          loadingFail: fields
+        }
+      )
+    }
+
     retrieveData = dataObj => {
         console.log("The api object inside main is: ", dataObj)
         this.setState(
@@ -80,12 +89,7 @@ class WeatherComp extends React.Component {
             }
         )
     }
-  onKeyPress(event) {
-    if (event.which === 13 /* Enter */) {
-      console.log("Enter key was pressed here!!!!!!!!!!!!!!!!!!!")
-      event.preventDefault();
-    }
-  }
+
 
     render() {
       const geoStatus = this.state.geoLocation
@@ -102,7 +106,7 @@ class WeatherComp extends React.Component {
                       {geoStatus ? <FetchLocation lat={this.state.latitude} long={this.state.longitude}/> :
                        <h3>Please Enable Location Services</h3>}
 
-                      {!loadStatus && <div> <h4 style={{paddingTop: "90px"}}>Fetching weather for your location...</h4></div>}
+                      {(!loadStatus && this.state.temp === "" ) && <div> <h4 style={{paddingTop: "90px"}}>Fetching weather for your location...</h4></div>}
 
                         <div>
                             <h2 className="city">{this.state.location}</h2>
@@ -120,7 +124,7 @@ class WeatherComp extends React.Component {
                 </div>
                 <div className="container1 cityType col-md-6">
                   <ErrorBoundary>
-                    <SearchLocationInput getNewCity={fields => this.getNewCity(fields)} onKeyPress={this.onKeyPress}/>
+                    <SearchLocationInput getNewCity={fields => this.getNewCity(fields)} updateApiStatus={fields => this.updateApiStatus(fields)}/>
                   </ErrorBoundary>
                     {
                         (this.state.location !== "") &&

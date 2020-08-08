@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './styles.css';
 import WeatherComp from './WeatherComp'
+import ErrorBoundary from "./ErrorBoundary";
 
 class App extends React.Component {
     constructor() {
@@ -20,7 +21,9 @@ class App extends React.Component {
             <h2 id={"num"}>0</h2>
             <button onClick={plusOperator}>+</button>*/}
                 {Navigator}
+                <ErrorBoundary>
                 <WeatherComp />
+                </ErrorBoundary>
 
 
             </div>
