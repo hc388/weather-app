@@ -83,7 +83,7 @@ function SearchLocationInput(props) {
                 </form>
 
             <div>
-                <small>We'll soon include GeoLocation features.</small><br/>
+                <small>We'll soon include weekly weather forecasts.</small><br/>
             </div>
         </div>
     );

@@ -29,13 +29,13 @@ class ApiCall extends React.Component {
         console.log("THE OBJECT IS:::::", data);
         if (data.cod !== "400") {
 
-            let icontemp = "https://visualpharm.com/assets/756/Sun-595b40b65ba036ed117d3468.svg"
-            // var finalIconUrl = "http://openweathermap.org/img/w/" + icontemp + ".png";
+            let icontemp = data.weather[0].icon
+            let finalIconUrl = "http://openweathermap.org/img/w/" + icontemp + ".png";
             this.setState({
                 location: data.name,
                 temp: Math.round(data.main.temp),
                 desc: data.weather[0].description[0].toUpperCase() + data.weather[0].description.slice(1),
-                iconUrl: icontemp
+                iconUrl: finalIconUrl
             })
             this.props.retrieveData(this.state)
         }

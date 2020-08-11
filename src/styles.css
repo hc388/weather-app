@@ -31,9 +31,12 @@ nav{
     background-color: #F7EEED;
     text-align: center;
     margin: 0 auto;
-    max-width: 900px;
+    max-width: 600px;
     height: 70vh;
-    /*border: 1px solid red;*/
+    /*
+    border: 1px solid red;
+    */
+    border-radius: 25px;
     padding: 25px;
 
 }
@@ -120,4 +123,8 @@ nav{
     }
 }
 
+.parentContainer{
+    display: block;
+    border-radius: 125px;
+}
 
