@@ -16,7 +16,7 @@ class ApiCall extends React.Component {
     requestWeather(location) {
         document.title = "Weather Today in " + location;
         console.log("WEATHER TODAY IN : ", location)
-        let URL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.state.location + "&units=metric&apikey=8b7577d7723ec100328f966bbf6fd7fc";
+        let URL = "https://api.openweathermap.org/data/2.5/weather?q=" + this.state.location + "&units=imperial&apikey=8b7577d7723ec100328f966bbf6fd7fc";
         fetch(URL)
             .then(response => response.json())
             .then((data) => {
@@ -63,7 +63,7 @@ class ApiCall extends React.Component {
              )*/
              console.log("I also got the city", this.props.city)
              console.log("I'm setting the city " + this.props.city + " to the state as: " + this.state.location)
-             fetch("https://api.openweathermap.org/data/2.5/weather?q=" + this.state.location + "&units=metric&apikey=637e3c2f05207c3a2db1deebc503f4a0")
+             fetch("https://api.openweathermap.org/data/2.5/weather?q=" + this.state.location + "&units=imperial&apikey=637e3c2f05207c3a2db1deebc503f4a0")
                  .then(response => response.json())
                  .then((data) => {
                      console.log(data)

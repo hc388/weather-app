@@ -1,6 +1,6 @@
 {
   "homepage": "http://hc388.github.io/weather-app",
-  "name": "weatherReact",
+  "name": "weatherreact",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -56,5 +56,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hc388/weather-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hc388/weather-app/issues"
+  }
 }
